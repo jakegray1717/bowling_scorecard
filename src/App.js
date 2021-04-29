@@ -1,23 +1,18 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { ListGroup } from 'react-bootstrap';
+import PinButtonList from './components/PinButtonList.js';
+import BowlingCard from './components/BowlingCard.js';
 import './App.css';
 
-function App() {
+const App = () => {
+  const emptyFrames = [{frame:['2', '3'], score:'5'}, {frame:['2', '4'], score:'5'}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', ''], score:''}, {frame:['', '', ''], score:''}];
+  const [frames, setFrame] = useState(emptyFrames);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Bowling Score Card</h1>
+      <PinButtonList />
+      <BowlingCard />
     </div>
   );
 }
