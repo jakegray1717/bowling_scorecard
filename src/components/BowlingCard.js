@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 
 const BowlingCard = ({ frames }) => {
+  const bowlframe = frames;
 
+  useEffect(() => {
+    renderFrames();
+  }, [bowlframe])
+
+  const renderFrames = () => {
+
+    return bowlframe.map((frameObj, idx) => {
+      if (frameObj.frame.length === 2) {
+        return (
+          <>
+            <td colSpan='3' key={idx}>{frameObj.frame[0]}</td><td colSpan='3'>{frameObj.frame[1]}</td>
+          </>
+        )
+      } else {
+        return (
+          <>
+            <td colSpan='3' key={idx}>{frameObj.frame[0]}</td><td colSpan='3'>{frameObj.frame[1]}</td><td colSpan='3'>{frameObj.frame[2]}</td>
+          </>
+        )
+      }
+  })}
 
   return (
     <div>
@@ -22,7 +44,7 @@ const BowlingCard = ({ frames }) => {
             <th colSpan='9'>Frame 10</th>
           </tr>
           <tr>
-            {frames.map((frameObj, idx) => {
+            {/* {frames.map((frameObj, idx) => {
               if (frameObj.frame.length === 2) {
                 return (
                   <>
@@ -36,7 +58,8 @@ const BowlingCard = ({ frames }) => {
                   </>
                 )
               }
-            })}
+            })} */}
+            {renderFrames()}
           </tr>
           <tr>
           {frames.map((frameObj, idx) => {

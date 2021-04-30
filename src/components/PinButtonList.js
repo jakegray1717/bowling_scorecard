@@ -10,12 +10,18 @@ const PinButtonList = ({ frames, setFrames }) => {
   useEffect(() => {
 
     if (currentRollIdx === 2 && currentFrameIdx !== 9) {
+
       setCurrentFrameIdx(currentFrameIdx + 1);
       setCurrentRollIdx(0);
     } else if (currentRollIdx === 3 && currentFrameIdx === 9) {
       //pop up score
     }
+
   }, [currentRollIdx])
+
+  // useEffect (() => {
+  //   if (frames[])
+  // }, [currentFrameIdx])
 
   // useEffect(() => {
   //   if () {
