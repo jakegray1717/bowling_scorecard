@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap';
 import PinButtonList from './components/PinButtonList.js';
 import BowlingCard from './components/BowlingCard.js';
 import testingData from './testingData.js';
-import findScore from './findScore.js';
 import './App.css';
 
 const App = () => {

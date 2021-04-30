@@ -10,6 +10,33 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
 
   useEffect(() => {
 
+    if (currentFrameIdx === 9 && currentRollIdx > 1) {
+      const tenthFrame = frames[9].frame;
+      let pins = 0;
+      tenthFrame.forEach((roll, idx) => {
+        if (roll === '/' || roll === 'X') {
+          roll = 10;
+        }
+        pins = parseInt(pins + roll);
+      });
+      if (pins < 9) {
+        setCurrentRollIdx(4);
+        const newScore = findScore(frames);
+        setFrames(frames => {
+          let newFrames = frames;
+          newFrames[9].score = newScore;
+          return [...newFrames];
+        })
+      } else if (currentRollIdx === 3) {
+        const newScore = findScore(frames);
+        setFrames(frames => {
+          let newFrames = frames;
+          newFrames[9].score = newScore;
+          return [...newFrames];
+        })
+      }
+    }
+
     if (currentRollIdx === 2 && currentFrameIdx !== 9) {
 
       setCurrentFrameIdx(currentFrameIdx + 1);
@@ -20,7 +47,13 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
 
   }, [currentRollIdx])
 
+  //The function below will need to find values for strike and space frames
   useEffect(() => {
+    //force 10th frame score here
+    if (currentFrameIdx === 10) { // 11th frame) {
+
+    }
+
     if (frames[currentFrameIdx - 1]) {
       const lastFrame = frames[currentFrameIdx - 1].frame;
       if (currentFrameIdx > 0 && lastFrame[0] !== 'X' && lastFrame[1] !== '/') {
