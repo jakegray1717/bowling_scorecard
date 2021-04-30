@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import PinButton from './PinButton.js';
+import findScore from '../findScore.js'
 
-const PinButtonList = ({ frames, setFrames }) => {
+const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx, currentRollIdx, setCurrentRollIdx }) => {
   const buttonValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
-  const [currentRollIdx, setCurrentRollIdx] = useState(0);
+  // const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
+  // const [currentRollIdx, setCurrentRollIdx] = useState(0);
 
   useEffect(() => {
 
@@ -19,15 +20,20 @@ const PinButtonList = ({ frames, setFrames }) => {
 
   }, [currentRollIdx])
 
-  // useEffect (() => {
-  //   if (frames[])
-  // }, [currentFrameIdx])
+  useEffect(() => {
+    if (frames[currentFrameIdx - 1]) {
+      const lastFrame = frames[currentFrameIdx - 1].frame;
+      if (currentFrameIdx > 0 && lastFrame[0] !== 'X' && lastFrame[1] !== '/') {
 
-  // useEffect(() => {
-  //   if () {
-
-  //   }
-  // }, [currentFrameIdx])
+        const newScore = findScore(frames) || '-';
+        setFrames(frames => {
+          let newFrames = frames;
+          newFrames[currentFrameIdx - 1].score = newScore;
+          return [...newFrames];
+        })
+      }
+    }
+  }, [currentFrameIdx])
 
   return(
     <>

@@ -1,4 +1,27 @@
-const findScore = (frames) => {
+const findScore = (data) => {
+  let rollString = '';
+  data.map((frameObj, idx) => {
+    frameObj.frame.forEach((roll) => {
+      if (roll !== ' ') {
+        rollString = rollString + roll;
+      }
+    })
+    rollString = rollString + ' ';
+  })
+
+  const removeExtraSpaces = (string) => {
+    if (string[string.length -1] === ' ') {
+      rollString = rollString.substring(0, rollString.length - 1);
+      removeExtraSpaces(rollString);
+    }
+  }
+
+  removeExtraSpaces(rollString);
+
+  return delegateScore(rollString);
+}
+
+const delegateScore = (frames) => {
   var framesArr = frames.split(' ').map((frame) => [...frame]);
   var result = 0;
 
@@ -18,7 +41,7 @@ const findScore = (frames) => {
   return result;
 }
 
-function getNextElementsScore(framesArr, index, count) {
+const getNextElementsScore = (framesArr, index, count) => {
   var result = getElementScore(framesArr[index + 1], 0);
   var result2 = getElementScore(framesArr[index + 1], 1)
 
@@ -28,14 +51,14 @@ function getNextElementsScore(framesArr, index, count) {
   return count === 1 ? result : (result2 === 10 && result !== 10 ? result2 : result2 + result );
 }
 
-function getElementScore(frame, index) {
+const getElementScore = (frame, index) => {
   if (frame[index] === 'X' || frame[index] === '/') {
     return 10;
   }
   return parseInt(frame[index]);
 }
 
-function getThreeRollScore(current) {
+const getThreeRollScore = (current) => {
   var third = getElementScore(current, 2);
   var second = getElementScore(current, 1);
   var first = getElementScore(current, 0);

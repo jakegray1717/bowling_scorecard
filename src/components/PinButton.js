@@ -31,7 +31,6 @@ const PinButton = ({ buttonValue, setCurrentRollIdx, currentRollIdx, setFrames, 
     }
   }
 
-  console.log('frames[currentRollIdx].frame[0]', typeof frames[currentRollIdx].frame[0])
   if (10 - frames[currentFrameIdx].frame[0] >= buttonValue || currentRollIdx === 0 || currentRollIdx === 2) {
     return (
       <>
