@@ -57,6 +57,22 @@ const PinButton = ({ buttonValue, setCurrentRollIdx, currentRollIdx, setFrames, 
         <Button variant="secondary" onClick={(e) => enterPins(e)}>{buttonValue}</Button>{' '}
       </>
     )
+
+  } else if (currentFrameIdx === 9 && currentRollIdx === 2 && frames[9].frame[1] !== 'X' && frames[9].frame[1] !== '/') {
+    if (10 - frames[9].frame[1] >= buttonValue) {
+      return (
+        <>
+          <Button variant="secondary" onClick={(e) => enterPins(e)}>{buttonValue}</Button>{' '}
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Button variant="secondary" disabled>{buttonValue}</Button>{' '}
+        </>
+      )
+    }
+
   } else if (10 - frames[currentFrameIdx].frame[0] >= buttonValue || currentRollIdx === 0 || currentRollIdx === 2) {
     return (
       <>
