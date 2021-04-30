@@ -6,6 +6,24 @@ import findScore from '../findScore.js'
 const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx, currentRollIdx, setCurrentRollIdx }) => {
   const buttonValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+  const addScoresStrikesSpares = (idx, newFrames) => {
+    console.log(idx);
+    if (idx === -1) {
+      return newFrames;
+    } else if (newFrames[idx].score === ' ' || '_') {
+      let nextFramePins = 0;
+      newFrames[idx + 1].frame.forEach((roll, i) => {
+        if (roll === 'X' || roll === '/') {
+          roll = 10;
+        }
+        nextFramePins = parseInt(nextFramePins + roll);
+      })
+      newFrames[idx].score = newFrames[idx + 1].score - nextFramePins
+      addScoresStrikesSpares(idx - 1, newFrames);
+    }
+    return newFrames;
+  }
+
   useEffect(() => {
 
     if (currentFrameIdx === 9 && currentRollIdx > 1) {
@@ -24,6 +42,7 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
           let newFrames = frames;
           newFrames[9].score = newScore;
           //recursive function to check previous scores
+          addScoresStrikesSpares(8, newFrames);
           return [...newFrames];
         })
       } else if (currentRollIdx === 3) {
@@ -32,19 +51,16 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
           let newFrames = frames;
           newFrames[9].score = newScore;
           //recursive function to check previous scores
+          addScoresStrikesSpares(8, newFrames);
           return [...newFrames];
         })
       }
     }
 
     if (currentRollIdx === 2 && currentFrameIdx !== 9) {
-
       setCurrentFrameIdx(currentFrameIdx + 1);
       setCurrentRollIdx(0);
-    } else if (currentRollIdx === 3 && currentFrameIdx === 9) {
-      //pop up score
     }
-
   }, [currentRollIdx])
 
   //The function below will need to find values for strike and space frames
@@ -57,6 +73,8 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[currentFrameIdx - 1].score = newScore;
+          //recursive function to check strike and spare scores
+          addScoresStrikesSpares(currentFrameIdx - 2, newFrames);
           return [...newFrames];
         })
       }
