@@ -6,8 +6,21 @@ const PinButton = ({ buttonValue, setCurrentRollIdx, currentRollIdx, setFrames, 
     let pins = buttonValue
     const rollOne = frames[currentFrameIdx].frame[0];
 
-
-
+    if (currentFrameIdx === 9 && currentRollIdx === 1 && rollOne === 'X' && pins === 10) {
+      pins = 'X';
+      setFrames(frames => {
+        let newFrames = frames;
+        newFrames[currentFrameIdx].frame[currentRollIdx] = pins;
+        return [...newFrames];
+      });
+    } else if (currentFrameIdx === 9 && currentRollIdx === 2 && rollOne === 'X' && pins === 10) {
+      pins = 'X';
+      setFrames(frames => {
+        let newFrames = frames;
+        newFrames[currentFrameIdx].frame[currentRollIdx] = pins;
+        return [...newFrames];
+      });
+    }
     if (buttonValue === 10 && currentRollIdx === 0) {
       pins = 'X';
       setFrames(frames => {

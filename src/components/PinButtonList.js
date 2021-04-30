@@ -5,8 +5,6 @@ import findScore from '../findScore.js'
 
 const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx, currentRollIdx, setCurrentRollIdx }) => {
   const buttonValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  // const [currentFrameIdx, setCurrentFrameIdx] = useState(0);
-  // const [currentRollIdx, setCurrentRollIdx] = useState(0);
 
   useEffect(() => {
 
@@ -25,6 +23,7 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[9].score = newScore;
+          //recursive function to check previous scores
           return [...newFrames];
         })
       } else if (currentRollIdx === 3) {
@@ -32,6 +31,7 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[9].score = newScore;
+          //recursive function to check previous scores
           return [...newFrames];
         })
       }
@@ -49,11 +49,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
 
   //The function below will need to find values for strike and space frames
   useEffect(() => {
-    //force 10th frame score here
-    if (currentFrameIdx === 10) { // 11th frame) {
-
-    }
-
     if (frames[currentFrameIdx - 1]) {
       const lastFrame = frames[currentFrameIdx - 1].frame;
       if (currentFrameIdx > 0 && lastFrame[0] !== 'X' && lastFrame[1] !== '/') {
