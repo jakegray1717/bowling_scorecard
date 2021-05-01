@@ -9,7 +9,7 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
   const addScoresStrikesSpares = (idx, newFrames) => {
     if (idx === -1) {
       return newFrames;
-    } else if (newFrames[idx].score === ' ' || '_') {
+    } else if (newFrames[idx].score === ' ' || newFrames[idx].score === '_') {
       let nextFramePins = 0;
       newFrames[idx + 1].frame.forEach((roll, i) => {
         if (roll === 'X' || roll === '/') {
