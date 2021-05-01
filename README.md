@@ -26,10 +26,12 @@ This app runs completely on React with React-Bootstrap. I decided to not run a b
 
 ### Summary
 
-This is a bowling score card app that record the clients score when bowling.
+This is a bowling score card app that records the clients score when bowling.
 
 As soon as you load the app, you will be greet by the HomePage which has an `Enter` button. Press the `Enter`.
 
-Now you will be in the main portion of the application. Here you see a group of buttons for the user to click. These buttons record the number of pins knocked down when bowling. To keep use easy on the user, the buttons will automatically disable when it would result in more than 10 pins being knocked down in a frame.
+Here, the client will be in the main portion of the application. There is a group of buttons for the user to click. These buttons record the number of pins knocked down when bowling. For easy use, the buttons will automatically disable when it would result in more than 10 pins being knocked down in a frame.
 
 Once the client has scored all 10 frames, there is a reset button at the bottom of the page to clear all of the frames up to that point. The reset button can be clicked at anytime during a bowl.
+
+Now go bowl!
