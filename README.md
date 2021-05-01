@@ -1,5 +1,7 @@
 # Bowling App
 
+Click here for the deployed application: https://bowling-score-card.herokuapp.com/
+
 ### To run the app run in the terminal;
 
 ### `npm i`
