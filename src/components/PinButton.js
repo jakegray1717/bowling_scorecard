@@ -1,4 +1,4 @@
-import React, { setState } from 'react';
+import React from 'react';
 import { Button } from 'react-bootstrap';
 
 const PinButton = ({ buttonValue, setCurrentRollIdx, currentRollIdx, setFrames, frames, setCurrentFrameIdx, currentFrameIdx }) => {

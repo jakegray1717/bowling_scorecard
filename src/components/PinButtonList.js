@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { ButtonGroup } from 'react-bootstrap';
 import PinButton from './PinButton.js';
 import findScore from '../findScore.js'
@@ -7,7 +7,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
   const buttonValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const addScoresStrikesSpares = (idx, newFrames) => {
-    console.log(idx);
     if (idx === -1) {
       return newFrames;
     } else if (newFrames[idx].score === ' ' || '_') {
@@ -41,7 +40,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[9].score = newScore;
-          //recursive function to check previous scores
           addScoresStrikesSpares(8, newFrames);
           return [...newFrames];
         })
@@ -50,7 +48,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[9].score = newScore;
-          //recursive function to check previous scores
           addScoresStrikesSpares(8, newFrames);
           return [...newFrames];
         })
@@ -63,7 +60,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
     }
   }, [currentRollIdx])
 
-  //The function below will need to find values for strike and space frames
   useEffect(() => {
     if (frames[currentFrameIdx - 1]) {
       const lastFrame = frames[currentFrameIdx - 1].frame;
@@ -73,7 +69,6 @@ const PinButtonList = ({ frames, setFrames, currentFrameIdx, setCurrentFrameIdx,
         setFrames(frames => {
           let newFrames = frames;
           newFrames[currentFrameIdx - 1].score = newScore;
-          //recursive function to check strike and spare scores
           addScoresStrikesSpares(currentFrameIdx - 2, newFrames);
           return [...newFrames];
         })
